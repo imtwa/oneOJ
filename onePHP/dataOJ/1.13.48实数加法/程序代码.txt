@@ -1,0 +1,110 @@
+#include<iostream>
+#include<string>
+#include<cstring>
+using namespace std;
+ 
+int add(char a,char b)
+{
+    int x=a-'0';
+    int y=b-'0';
+    return x+y;
+}
+ 
+int main()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    
+        int s1f,s1l;
+        int s2f,s2l; 
+        //分别算出整数部分和小数部分的个数
+        for(int i=0;s1[i]!='\0';i++)
+        {
+            if(s1[i]=='.')
+            {
+                s1f=i;
+                s1l=s1.size()-i-1;
+            }
+        }
+        for(int i=0;s2[i]!='\0';i++)
+        {
+            if(s2[i]=='.')
+            {
+                s2f=i;
+                s2l=s2.size()-i-1;
+            }
+        }
+        int a=s1f-s2f;
+        int b=s1l-s2l;
+        int sp;
+        //补齐s1和s2左右两边，使其方便进行计算
+        if(a>=0)
+        {
+            while(a--)
+                s2.insert(0,"0");
+            sp=s1f;
+        }
+        else
+        {
+            a=0-a;
+            while(a--)
+                s1.insert(0,"0");
+            sp=s2f;
+        }
+        if(b>=0)
+        {
+            while(b--)
+                s2+="0";
+        }
+        else
+        {
+            b=0-b;
+            while(b--)
+                s1+="0";
+        }
+        string s(s1.size()-1,'0');//用000000000初始化string s
+        s.insert(sp,".");
+        //cout<<s1<<endl<<s2<<endl<<s<<endl;
+        //进行计算s1+s2=s
+        for(int i=s1.size()-1;i>0;i--)
+        {
+            if(s1[i]!='.' && add(s1[i],s2[i])<10)
+            {
+                s[i]+=add(s1[i],s2[i]);
+                
+            }
+            if(s1[i]!=0 && add(s1[i],s2[i])>=10)
+            {
+                s[i]+=add(s1[i],s2[i])-10;
+                if(s[i-1]=='.')
+                    s1[i-2]+=1;
+                else
+                {
+                    s1[i-1]+=1;
+                }
+            }            
+        }
+        //对整数最左边进一位的情况进行处理
+        if((add(s1[0],s2[0]))>=10)
+        {
+            s[0]+=add(s1[0],s2[0])-10;
+            s.insert(0,"1");
+        }
+        else{
+            s[0]+=add(s1[0],s2[0]);
+        }
+        //对小数最右有0的情况进行处理，即不打印
+        int t;
+        for(int i=s.size()-1;i>=0;i--)
+        {
+            if(s[i]!='0')
+            {
+                t=i;
+                break;
+            }
+        }
+        //打印最终结果s
+        cout<<s.substr(0,t+1)<<endl;
+        
+    return 0;
+}

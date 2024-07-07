@@ -1,0 +1,62 @@
+#include<iostream>
+#include<cstdio>
+#include<cstdlib>
+using namespace std;
+
+int main()
+{
+	char a[101][101];
+int now=1;
+int m_tot=0;
+int z_tot=0;
+int ans=0;
+    int n,m;
+    cin>>n>>m;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            cin>>a[i][j];
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(a[i][j]=='#')
+            {
+                if(a[i+1][j]=='#')
+                {
+                    a[i][j]='.';
+                    a[i+1][j]='.';
+                    ans++;
+                }
+                else if(a[i-1][j]=='#')
+                {
+                    a[i][j]='.';
+                    a[i+1][j]='.';
+                    ans++;
+                }
+                else if(a[i][j+1]=='#')
+                {
+                    a[i][j]='.';
+                    a[i][j+1]='.';
+                    ans++;
+                }
+                else if(a[i][j-1]=='#')
+                {
+                    a[i][j]='.';
+                    a[i+1][j]='.';
+                    ans++;
+                }
+                else
+                {
+                    a[i][j]='.';
+                    ans++;
+                }
+            }
+        }
+    }
+    cout<<ans;
+    return 0;
+}

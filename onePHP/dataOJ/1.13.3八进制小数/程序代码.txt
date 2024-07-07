@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+	char s[20];
+    cin>>s;
+    double t;
+    int len = strlen(s),i;
+    for(i = 2; i < len; i++){
+        int temp = s[i]-'0';
+        t = t + temp * pow(0.125,i-1);
+    }
+    char l[100];
+    sprintf(l,"%s [8] = %.45g [10]",s,t);
+    cout<<l<<endl;
+    return 0;
+}

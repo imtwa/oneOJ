@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+ 
+#define ll long long
+using namespace std;
+ 
+int main()
+{
+    int n,m;
+    set<int>p;
+    cin>>n;
+    while(n--){
+        int k;
+        cin>>k;
+        p.insert(k);
+    }
+    cout<<p.size()<<endl;
+    for(auto a:p){
+        cout<<a<<" ";
+    }
+     
+    return 0;
+ }

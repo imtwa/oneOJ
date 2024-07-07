@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main() {
+	int n;
+	//字符数组存放出示结果
+	string a,b;
+	//字符串数组存放比试结果
+	string c[200];
+	
+	cin>>n;	
+	for(int i = 0; i < n; i++) {
+		cin>>a>>b;
+		
+		if((a[0] == 'R' && b[0] == 'S') || (a[0] == 'S' && b[0] == 'P') || (a[0] == 'P' && b[0] == 'R')) {
+			c[i] = "Player1";
+		} else if (a[0]==b[0]) {
+			c[i] = "Tie";	
+		} else {
+			c[i] = "Player2";
+		}
+	}	
+	for (int i = 0; i < n; i++) {
+		cout << c[i] << endl;
+	}  
+	
+	return 0;
+} 

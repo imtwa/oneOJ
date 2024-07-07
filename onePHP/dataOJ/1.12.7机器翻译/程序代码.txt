@@ -1,0 +1,33 @@
+#include<iostream>
+#include<queue>
+using namespace std;
+bool vis[1010];
+int main()
+{
+	queue<int>q;
+	int m,n;
+	cin>>m>>n;//内存容量和文章长度
+	int cnt=0,a,num=0;
+	for(int i=1;i<=n;i++)
+	{
+		cin>>a;
+		if(vis[a])continue;//有翻译记录就跳过
+		//没有翻译记录时 
+		cnt++;//查找次数加1
+		if(num==m)//满了的入队列的操作 
+		{
+			vis[q.front()]=0;//首先清除记录 
+			q.pop();//去掉队列头 
+			q.push(a);//加入队列尾 
+			vis[a]=1; 
+		}
+		else//没满队列时的操作 
+		{
+			vis[a]=1;//及加一个记录 
+			q.push(a);//加入队列尾 
+			num++;//队列元素的数量 	
+		}
+	}
+	cout<<cnt<<endl;
+	return 0;
+}

@@ -1,0 +1,37 @@
+
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	char a[205]={0}, b[100][100]={0};
+	int i, j, k, n,count=0,len,time,dc;
+	scanf("%d", &n);
+	getchar();
+	gets(a);
+	len = strlen(a);
+	time = len / n;
+	for (i = 0; i <= time - 1; i++)//time为行，n为列
+	{
+		if (i % 2 == 0)//单数行 原样
+		{
+			for (j =0; j <= n - 1; j++)
+			{
+				b[i][j] = a[count];
+				count++;
+			}
+		}
+		else for (j = n-1; j >=0 ; j--)
+		{
+			b[i][j] = a[count];
+			count++;
+		}
+	}
+	
+	for (j = 0; j <= n - 1; j++)
+		for(i=0;i<=time-1;i++){
+		printf("%c", b[i][j]);
+	}
+			
+	return 0;
+}

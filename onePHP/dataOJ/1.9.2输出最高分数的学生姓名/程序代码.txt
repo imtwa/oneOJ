@@ -1,0 +1,28 @@
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <fstream>
+#include <ctime>
+#include <cmath>
+#include <random>
+#include <map>
+
+using namespace std;
+
+int main (){	
+	
+	int n,m,x=0;
+	string s;
+	map<int,string>p;
+	cin>>n;
+	for(int i=0;i<n;i++){
+		cin>>m>>s;
+		p[m]=s;
+		x=max(x,m); 
+	}
+	cout<<p[x]<<endl;
+	
+	
+	return 0;
+}

@@ -1,0 +1,124 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+char a[105][105];
+char b[105][105];
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            cin>>a[i][j];
+        }
+    }
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            cin>>b[i][j];
+        }
+    }
+    int sum1=0,sum2=0,sum3=0,sum4=0;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+        if(a[i][j]==b[j][n-i+1])
+        {
+            sum1++;
+        }
+        if(a[i][j]==b[n-j+1][i])    
+        {
+            sum2++;
+        }
+        if(a[i][j]==b[n-i+1][n-j+1])
+        {
+            sum3++;
+        }
+        if(a[i][j]==b[i][j])
+        {
+            sum4++;
+        }
+        }
+    }
+    if(sum1==n*n)
+    {
+        printf("1");
+    }
+    else if(sum2==n*n)
+    {
+        printf("2");
+    }
+    else if(sum3==n*n)
+    {
+        printf("3");
+    }
+    else if(sum4==n*n)
+    {
+        printf("4");
+    }
+    else
+    {
+        printf("5");
+    }
+    return 0;
+}
+
+
+
+/*char p[17][17]; 
+	int n,k;
+	n=OO(e);
+	k=OO(e)%5+1;
+	fin<<n<<endl;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			p[i][j]=(char)(TT(e));
+			fin<<p[i][j]<<" \n"[j==n-1];
+		}
+	}
+	
+	fout<<k;
+	
+	if(k==1){
+		for(int i=0;i<n;i++){
+		for(int j=n-1;j>=0;j--){
+			cout<<p[j][i]<<" \n"[j==0];
+			fin<<p[j][i]<<" \n"[j==0];
+		}
+		}
+	}
+	if(k==2){
+		for(int i=n-1;i>=0;i--){
+		for(int j=0;j<n;j++){
+			cout<<p[j][i]<<" \n"[j==n-1];
+			fin<<p[j][i]<<" \n"[j==n-1];
+		}
+		}
+	}
+	if(k==3){
+		for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			cout<<p[n-1-i][n-1-j]<<" \n"[j==n-1];
+			fin<<p[n-1-i][n-1-j]<<" \n"[j==n-1];
+		}
+		}
+	}
+	if(k==4){
+		for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			fin<<p[i][j]<<" \n"[j==n-1];
+		}
+		}
+	}
+	if(k==5){
+		for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			cout<<p[j][i]<<" \n"[j==n-1];
+			fin<<p[j][i]<<" \n"[j==n-1];
+		}
+		}
+	}*/

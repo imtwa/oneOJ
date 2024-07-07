@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct Patient {
+    int number;   // 登记的顺序
+    char id[11];  // 病人ID
+    int age;      // 年龄
+} a[1010];
+int n;
+bool cmp(Patient a, Patient b) {
+    if (a.age >= 60 && b.age >= 60) {   //a,b都是老年人
+        if (a.age != b.age) // 如果年龄不一样
+            return a.age > b.age;   // 按年龄从大到小排
+        else    // 否则，年龄一样
+            return a.number < b.number;  // 按登记顺序排
+    }
+    else if (a.age >= 60)   // a是老人，b不是老人
+        return true;    // a排前面
+    else if (b.age >= 60)   // b是老人，a不是老人
+        return false;   // b排前面
+    else        // 两个都是年轻人
+        return a.number < b.number;  // 按登记顺序排
+}
+int main() {
+    cin >> n;
+    for (int i = 0; i < n; i ++) {
+        cin >> a[i].id >> a[i].age;
+        a[i].number = i;    // 用 i 来表示 第 i 个病人的登记顺序
+    }
+    sort(a, a+n, cmp);
+    for (int i = 0; i < n; i ++){
+    	cout << a[i].id << endl;
+	}
+        
+    return 0;
+}

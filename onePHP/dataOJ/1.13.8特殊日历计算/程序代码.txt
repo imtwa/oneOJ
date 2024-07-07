@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<string.h>
+#include<algorithm>
+using namespace std;
+int month[13]= {0,31,28,31,30,31,30,31,31,30,31,30,31};
+int sum[20];
+int judge(int y)
+{
+    if(y%400==0||(y%4==0&&y%100!=0))
+        return 1;
+    return 0;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int a,b,c,d,e,f;
+        scanf("%d:%d:%d %d.%d.%d",&a,&b,&c,&d,&e,&f);
+        for(int i=1; i<=12; i++)
+            sum[i]=sum[i-1]+month[i-1];
+        int Sums=a*60*60+b*60+c;//总秒数
+        int s=0;
+        for(int i=2000; i<f; i++)
+        {
+            if(judge(i)==1)
+                s+=366;
+            else
+                s+=365;
+        }
+        int Sumd;//总天数
+        if(judge(f)&&e>2)
+            Sumd=d+sum[e]+1+s;
+        else
+            Sumd=d+sum[e]+s;
+        int seconds=Sums/0.864;
+        Sumd=Sumd-1;
+        
+        printf("%d:%d:%d %d.%d.%d\n",seconds/10000,(seconds/100)%100,seconds%100,Sumd%100+1,Sumd/100%10+1,Sumd/1000);
+    }
+    return 0;
+}

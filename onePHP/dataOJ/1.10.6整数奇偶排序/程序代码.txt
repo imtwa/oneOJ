@@ -1,0 +1,24 @@
+#include <iostream>
+#include <algorithm>
+ 
+using namespace std;
+ 
+int cmp(int a,int b){
+    return (a&1?a:-a)>(b&1?b:-b);
+}
+ 
+int main()
+{
+    int i,n=10;
+    int p[n];
+    for(i=0;i<n;i++){
+    	cin>>p[i];
+	}
+    sort(p,p+n,cmp);
+    for(i=0;i<n;i++){
+    	cout<<p[i]<<" ";
+	}
+    
+ 
+    return 0;
+}

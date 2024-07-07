@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main(){
+	
+	char a[110],b[110];
+	int aa[110],bb[110];
+    cin>>a;//输入字符串与转换为常数数组
+    cin>>b;
+    int len_a=strlen(a);
+    int len_b=strlen(b);
+    if(len_a<len_b){
+        cout<<0;
+        
+    }else{
+    	for (int i = 0; i < len_a; ++i) {
+        aa[i]=a[i]-'0';
+    }
+    for (int i = 0; i < len_b; ++i) {
+        bb[i]=b[i]-'0';
+    }
+    int k=0,ff=0;//k为首位置，ff为标记是否为初始为零情况
+    for (int i = len_b; i <= len_a; ++i) {//i为尾位置
+        int num=0;
+        while(true){
+            int flag=1;//用于标记位数相同时情况
+            int temp=0;
+            int all=0;
+            if(aa[k]==0)k++;
+            if(i-k<len_b)break;
+            else if (i-k==len_b){//位数相同时
+                for (int l = k; l < i; ++l) {
+                    if(aa[l]>bb[temp]){
+                        flag=0;
+                        int tt=0;
+                        for (int j = k; j < l; ++j) {
+                            if(aa[j]<bb[tt++])flag=1;
+                        }
+                        break;
+                    }
+                    if(aa[l]==bb[temp]){
+                        all++;
+                    }
+                    temp++;
+                }//比较
+                if(all==len_b)flag=0;
+                if(flag)break;
+            }
+            ff=1;
+            int bbb=len_b-1;
+            for (int j = i-1; j >= k ; j--) {//减
+                if(aa[j]<bb[bbb]){
+                    aa[j]+=10;
+                    aa[j-1]-=1;
+                    aa[j]-=bb[bbb];
+                }else{
+                    aa[j]-=bb[bbb];
+                }
+                bbb--;
+            }
+            num++;
+        }
+        if(ff||len_a==len_b){
+        	cout<<num;
+		}
+    }
+	}
+	return 0;
+    
+}

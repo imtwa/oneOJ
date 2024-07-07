@@ -1,0 +1,64 @@
+#include<iostream>
+#include<cmath>
+#include<cstring>
+#include<cstdio>
+#include<algorithm>
+using namespace std;
+int flag=0;
+bool vis(int n)
+{
+    for(int k=2;k<n-1;k++)
+    {
+        if(n%k==0)
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+int main()
+{
+    int m,n;
+    cin>>m>>n;
+    for(int i=m;i<=n;i++)
+    {
+        char bc[1001];
+        int a=i;
+        if(vis(a)==0)
+        continue;
+        else
+        {
+            char ans[101];
+            int now=0;
+            sprintf(bc,"%d",a);
+            int l=strlen(bc);
+            int pd;
+            for(int j=l-1;j>=0;j--)
+            {
+                ans[now]=bc[j];
+                now++;
+            }
+            //sscanf(pd,"%d",&ans);
+            pd=atoi(ans);
+            if(vis(pd)==0)
+            continue;
+            else
+            {
+                if(flag==0)
+                {
+                    cout<<a;
+                    flag=1;
+                }
+                else
+                {
+                    cout<<","<<a;
+                }
+            }
+
+        }
+    }
+    if(flag==0){
+    	   cout<<"No";
+	}
+    return 0;
+}

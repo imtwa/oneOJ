@@ -1,0 +1,37 @@
+#include<cstdio>
+#include<cstring>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int m,n,i,j,k,x,cnt,ans=0,now=0;
+int a,o[10005][105]={0},m1[10005][105]={0};
+int cnt1[10005]={0};
+int main()
+{
+    cin>>n>>m;// n楼层 m：每层m个房间
+    for(i=0; i<n; i++)
+    {
+        cnt=0;
+        for(j=0; j<m; j++)
+        {
+            scanf("%d%d",&a,&o[i][j]);//a是否有楼梯 o指示牌
+            if(a)
+            m1[i][cnt++]=j;//有楼梯的另外存（存它对应的房间）
+                                //方便上楼后对数据的处理
+        }
+        cnt1[i]=cnt;//记录每层多少房间有楼梯
+    }
+    cin>>now;//now记录所在的房间
+    for(i=0;i<n;i++)
+    {
+        x=o[i][now];//x为牌子上的号码
+        ans=x+ans;
+        ans=ans%20123;//取模
+        for(k=0;k<cnt1[i];k++) //找当层第一间有楼梯的房间
+            if(m1[i][k]>=now)
+            break;
+        now=m1[i][(k+x-1)%cnt1[i]];//记得减一，绕圈圈要取模每层房间数
+    }
+    cout<<ans<<endl;
+    return 0;
+}

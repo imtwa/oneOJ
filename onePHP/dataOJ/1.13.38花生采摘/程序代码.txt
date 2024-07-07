@@ -1,0 +1,33 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int mmp[30][30], T, ans, cnt, n, m,ttime, sum;
+struct data {
+	int x, y, zhi;
+}a[2333];
+bool cmp(struct data a1, struct data a2) {
+	return a1.zhi >= a2.zhi;//题意按照花生个数排
+}
+int main() {
+	cin >> n >> m >> T;
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= m; j++) {
+			cin >> mmp[i][j];
+			if (mmp[i][j]) { a[++cnt].x = i; a[cnt].y = j; a[cnt].zhi = mmp[i][j]; }
+		}
+
+	sort(a + 1, a + 1 + cnt, cmp);
+
+	ttime = (a[1].x - 1) + 1 + 1, sum = a[1].zhi;//从路边到边界一体力
+	if (T < a[1].x + ttime) { cout << 0; return 0; }//特判一下 万一连第一份花生都摘不到呢
+
+	for (int i = 2; i <= cnt; i++) {
+		int dis = abs(a[i].x - a[i - 1].x) + abs(a[i].y - a[i - 1].y) + 1;//1.曼哈顿距离
+
+		if (ttime + a[i].x + dis > T)break;//不能摘
+		else if (ttime + a[i].x + dis == T) { ttime += dis, sum += a[i].zhi; break; }//可以摘 完事后要溜
+		else ttime += dis, sum += a[i].zhi;//正常可以摘
+	}
+	cout << sum;
+	return 0;
+}

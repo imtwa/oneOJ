@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#include <stack>
+#define ll long long
+using namespace std;
+ 
+int main()
+{
+	string s,k;
+	
+	while(cin>>s){
+		k+=s;
+	}
+	for(int i=0,j=0,z=0;i<k.size();i++){
+		if(k[i]=='W')j++;
+		if(k[i]=='L')z++;
+		if(k[i]=='E'){
+			cout<<j<<":"<<z<<endl<<endl;
+		} 
+		if((j>=11||z>=11)&&abs(j-z)>=2){
+			cout<<j<<":"<<z<<endl;
+			j=0;
+			z=0;
+		}
+	}
+	for(int i=0,j=0,z=0;i<k.size();i++){
+		if(k[i]=='W')j++;
+		if(k[i]=='L')z++;
+		if(k[i]=='E'){
+			cout<<j<<":"<<z<<endl<<endl;
+		}
+		if((j>=21||z>=21)&&abs(j-z)>=2){
+			cout<<j<<":"<<z<<endl;
+			j=0;
+			z=0;
+		}
+	}
+	
+    return 0;
+ }

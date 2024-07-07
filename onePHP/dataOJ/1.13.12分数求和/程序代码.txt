@@ -1,0 +1,41 @@
+#include<cstdio>
+#include<cctype>
+using namespace std;
+long long gcd(long long a,long long b)
+{
+    return b == 0  ? a : gcd(b,a % b);
+}
+int read()
+{
+    int x = 0;
+    int f = 1;
+    char ch = getchar();
+    for(;!isdigit(ch);ch =getchar())
+        if(ch == '-')
+            f = -1;
+    for(;isdigit(ch);ch = getchar())
+        x = x * 10 + (ch ^ 48);
+    return x * f;
+}
+int n, a[20], b[20];
+long long sum = 1,ans = 0;
+int main()
+{
+    n = read();
+    for(int  i=1; i<=n; i++)
+    {
+        a[i] = read(),b[i] = read();
+        sum *= b[i];
+    }
+    for(int i = 1;i <= n;i++)
+        ans += (sum / b[i]) * a[i];
+    long long g = gcd(ans,sum);
+    ans /= g,sum /= g;
+    if(sum > 1){
+    	printf("%lld/%lld",ans,sum);
+	}
+    if(sum == 1){
+    	printf("%lld",ans);
+	}
+	return 0;
+}

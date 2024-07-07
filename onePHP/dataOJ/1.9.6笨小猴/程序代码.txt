@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char s[100];
+    int i,len,a[26]={0};
+    int min,max,t;
+    scanf("%s",s);
+    len=strlen(s);
+    for(i=0;i<len;i++)
+    {
+        a[s[i]-'a']++;        //字母到整数的映射
+    }
+    max=0;
+    min=99;
+    for(i=0;i<26;i++)
+    {
+        if(a[i])            //这里很重要，因为我们只统计出现过的字母
+        {
+            if(max<a[i])            //找出最大值最小值
+                max=a[i];
+            if(min>a[i])
+                min=a[i];
+        }
+    }
+    t=max-min;
+    if(t<2){
+    	printf("No Answer\n0");
+	}
+    if(t==2){
+    	printf("Lucky Word\n%d",t);
+	}
+        
+    if(t>2)
+    {
+        for(i=2;i<t;i++)
+        {
+            if(t%i==0)
+                break;        //判断是否为素数
+        }
+        if(i<t){
+        	printf("No Answer\n0");
+		}
+            
+        else{
+        	printf("Lucky Word\n%d",t);
+		} 
+    }
+    return 0;
+}

@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main(){
+	int a[101][101]={0},b[100][100]={0};
+    int ma,na,mb,nb;
+    cin>>ma>>na;
+    for (int i = 0; i < ma; ++i) {
+        for (int j = 0; j < na; ++j) {
+            cin>>a[i][j];
+        }
+    }
+    cin>>mb>>nb;
+    for (int i = 0; i < mb; ++i) {
+        for (int j = 0; j < nb; ++j) {
+            cin>>b[i][j];
+        }
+    }
+
+
+    int rr=ma-mb+1,ss=na-nb+1;//边界
+    int num,min=-1,ans_m=0,ans_n=0;
+    for (int i = 0; i < rr; ++i) {
+        for (int j = 0; j < ss; ++j) {
+            num=0;
+            for (int k = 0; k < mb; ++k) {
+                for (int l = 0; l < nb; ++l) {
+                    num+=abs(a[i+k][j+l]-b[k][l]);
+
+                }
+            }
+//            cout<<"  "<<num<<endl;
+            if(min==-1){
+                min=num;
+            }
+            if(num<min){
+                ans_m=i;
+                ans_n=j;
+                min=num;
+            }
+        }
+    }
+    for (int i = 0; i < mb; ++i) {
+        for (int j = 0; j < nb; ++j) {
+            cout<<a[ans_m+i][ans_n+j]<<" ";
+        }
+        cout<<endl;
+    }
+
+}

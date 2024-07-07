@@ -1,0 +1,44 @@
+#include<cstdio>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+struct asdf
+{
+    int all,num;
+}a[5050];
+int cmp(asdf a,asdf b)
+{
+    return a.all>b.all||a.all==b.all&&a.num <b.num;
+}
+int main()
+{
+    int n,m,minn,num2[5050],num3=0;
+    scanf("%d%d",&n,&m);
+    for(int i=1;i<=n;i++){
+    	scanf("%d%d",&a[i].num,&a[i].all);
+	}
+        
+    m=floor(m*3/2);
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            if(cmp(a[i],a[j]))
+            {
+                swap(a[i],a[j]);
+            }
+        }
+    }
+    minn=a[m].all;
+    for(int i=1;i<=n;i++)
+    {
+        if(a[i].all>=minn)
+            num2[++num3]=i;
+    }
+    printf("%d %d\n",minn,num3);
+    for(int i=1;i<=num3;i++){
+    	printf("%d %d\n",a[num2[i]].num,a[num2[i]].all);
+	}
+        
+    return 0;
+}

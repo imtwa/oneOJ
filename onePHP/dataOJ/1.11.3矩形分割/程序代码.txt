@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int area[1000005]; //每一列的小矩形的面积，如area[0]表示横坐标为0到1之间的小矩形的面积
+int R; //题目中的R
+int N; //题目中的N
+
+long long check(int mid){
+    long long left=0,right=0; //注意总面积很有可能超出2^31
+    for(int i=0; i<mid; i++) {
+        left+=area[i];
+    }
+    for(int i=mid; i<R; i++) {
+        right+=area[i];
+    }
+    return left-right;
+}
+int main() {
+    scanf("%d%d",&R,&N);
+    for(int i=0; i<N; i++) {//预处理
+        int l,t,w,h;
+        scanf("%d%d%d%d",&l,&t,&w,&h);
+        for(int i=l; i<l+w; i++) {
+            area[i]+=h;
+        }
+    }
+    long long l,r,mid, ans;
+    l=0;
+    r=R;
+    while(r>l) {
+        mid=(l+r)/2;
+        //cout<<l<<" "<<r<<" "<<mid<<endl;
+        long long temp = check(mid);
+        if(!temp) { //左面积等于右面积,这时候就往右移
+            ans = mid;
+            break;
+        }
+        else if(temp<0){ 
+            l = mid+1;
+        }
+        else{
+            r = mid;
+            ans = mid;
+        }
+    }
+    long long left=0,right=0; //注意总面积很有可能超出2^31
+    for(int i=0; i<ans; i++) {
+        left+=area[i];
+    }
+    for(int i=ans; i<R; i++) {
+        right+=area[i];
+    }
+    while(area[ans]==0&&ans+1<=R) ans++;
+    printf("%d",ans);
+    return 0;
+}

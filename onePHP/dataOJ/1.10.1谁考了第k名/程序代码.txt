@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+int m,n; 
+struct T{
+    int a;
+    double b;
+}a[105];
+bool cmp(T a,T b){
+    return a.b>b.b;
+}
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i].a>>a[i].b;
+    }
+    sort(a,a+n,cmp);
+    cout<<a[m-1].a<<" "<<a[m-1].b<<endl;
+    return 0;
+}

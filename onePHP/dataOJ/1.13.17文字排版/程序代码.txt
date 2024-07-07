@@ -1,0 +1,25 @@
+#include <cstdio>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+	char m[50];
+	int n,tot,x;
+    scanf("%d",&n);
+    while(++x<=n)
+    {
+        scanf("%s",m);
+        tot+=strlen(m);
+        if(tot!=80) tot++;
+        if(tot>80)
+        {
+            printf("\n");
+            tot=strlen(m)+1;
+        }
+        printf("%s",m);
+        if(tot!=80&&x!=n) printf(" ");
+        memset(m,0,sizeof(m));
+    }
+    return 0;
+}

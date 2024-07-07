@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+void reverse(char str[],int n);//字符串反转函数
+void change(char str[],int n);//字符转数字函数
+int main()
+{
+	char a[200]={0},b[200]={0};
+	int r[201]={0};
+	int n1,n2,i,max,f=0,k=0;//f用来判断相加结果有无前导0，赋值0表示默认有前导0
+	scanf("%s",a);
+	scanf("%s",b);
+	n1=strlen(a);
+	n2=strlen(b);
+	reverse(a,n1);
+	reverse(b,n2);
+	change(a,n1);
+	change(b,n2);
+	max=(n1>n2)?n1:n2;
+	for(i=0;i<max;i++)//求和过程
+	{
+		r[i]=(a[i]+b[i]+k)%10;
+		k=(a[i]+b[i]+k)/10;//k表示每位数字求和产生的进位
+	}
+	r[i]=k;//要注意可能有最高位进位
+	for(;i>=0;i--)
+	{
+		if(f==0&&r[i]==0) continue;//判断结果有无前导0，有则跳过
+		else f=1;
+		printf("%d",r[i]);
+	}
+	if(f==0) {
+		printf("0");
+	}
+}
+void reverse(char str[],int n)
+{
+	int i,t;
+	for(i=0;i<n/2;i++)
+	{
+		t=str[i];
+		str[i]=str[n-i-1];
+		str[n-i-1]=t;
+	}
+}
+void change(char str[],int n)
+{
+	int i;
+	for(i=0;i<n;i++) str[i]-=48;
+}

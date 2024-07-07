@@ -1,0 +1,26 @@
+#include <iostream>
+#include <algorithm>
+#include <functional>
+#include <iomanip>
+using namespace std;
+
+
+int main() {
+	double a[50];
+	string s;
+	int n;
+    cin >> n;
+    int left = 1, right = n;
+    for (int i = 1; i <= n; ++i) {
+        cin >> s >> a[0];
+        if (s[0] == 'm') a[left++] = a[0];
+        else a[right--] = a[0];
+    }
+    sort(a + 1, a + left);
+    sort(a + right + 1, a + n + 1, greater<double>());
+    for (int i = 1; i <= n; ++i){
+    	cout << fixed << setprecision(2) << a[i] << " "; 
+	}
+        
+    return 0;
+}
