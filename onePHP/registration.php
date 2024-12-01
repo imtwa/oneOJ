@@ -27,7 +27,7 @@ if (true === $response["result"]) {
         $response["message"] = "昵称重复";
     } else {
         // 名字不存在，执行插入语句  
-        $sql = "INSERT INTO oj_user (name, password, email, limit) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO oj_user (name, password, email, limits) VALUES (?, ?, ?, ?)";
         $stmt = $databaseConn->prepare($sql);
         //绑定参数并执行预处理语句
         $stmt->bind_param("ssss", $username, $password, $email, $limits);
